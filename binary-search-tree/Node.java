@@ -1,10 +1,5 @@
 package linkedTree;
 
-/**
- * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
-
 class Node {
 
     Node left;
