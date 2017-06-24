@@ -1,12 +1,20 @@
-package decisionTree.model;
+package decisiontree.model;
 
 public class Node {
 
+    private String text;
     private Node yes;
     private Node no;
-    private String text;
 
     public Node(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
         this.text = text;
     }
 
@@ -26,9 +34,4 @@ public class Node {
         this.no = no;
     }
 
-    public String getText() {
-        return text;
-    }
-
 }
-

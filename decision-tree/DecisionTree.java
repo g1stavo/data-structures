@@ -1,12 +1,11 @@
-package decisionTree;
+package decisiontree;
 
-import decisionTree.control.Controller;
+import decisiontree.control.Controller;
 
 public class DecisionTree {
    
-    public static void main(String[] args) {       
-        new Controller().start();
-    }
-    
+    public static void main(String[] args) {
+        Controller.Initialize();
+        Controller.Play();
+    }  
 }
-
