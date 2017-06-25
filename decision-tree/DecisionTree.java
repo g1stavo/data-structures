@@ -1,11 +1,11 @@
-package decisiontree;
+package work2;
 
 import decisiontree.control.Controller;
 
 public class DecisionTree {
    
     public static void main(String[] args) {
-        Controller.Initialize();
-        Controller.Play();
+        Controller.initialize();
+        Controller.play();        
     }  
 }

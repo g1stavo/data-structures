@@ -12,11 +12,4 @@ public class Tree {
         this.root = root;
     }
 
-    public void SaveToDisk() {
-
-    }
-
-    public void LoadFromDisk() {
-
-    }
 }
