@@ -1,4 +1,4 @@
-package work2;
+package decisiontree;
 
 import decisiontree.control.Controller;
 

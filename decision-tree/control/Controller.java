@@ -18,17 +18,56 @@ public final class Controller {
         keyboard = new Scanner(System.in);
         mapper = new Mapper();
         mapper.load();
-        
+
         if (!mapper.getCache().isEmpty()) {
             tree.setRoot(mapper.getCache().get(0));
         }
     }
 
     public static void play() {
-        out.println("------");
-        out.println("Vamos jogar! Vou tentar adivinhar qual animal você está pensando, ok?");
-        questionNode(tree.getRoot());
-        out.println(mapper.getCache().toString());
+        int option = 0;
+        try {
+            do {
+                out.println("-----------------------------------");
+                out.println("---------Árvore de Decisão---------");
+                out.println("1.-------Carregar último jogo------");
+                out.println("2.--------Começar novo jogo--------");
+                out.println("0.------------Finalizar------------");
+                out.println("-----------------------------------");
+
+                option = Integer.parseInt(keyboard.nextLine());
+                handleOption(option);
+            } while (option != 0);
+        } catch (Exception e) {
+            out.println("Opção inválida!");
+            play();
+        }
+    }
+
+    public static void handleOption(int option) {
+        switch (option) {
+            case 0:
+                out.println();
+                out.println("Obrigado por jogar!");
+                out.println("Finalizando...");
+                System.exit(0);
+            case 1:
+                out.println("------");
+                out.println("Vamos jogar! Vou tentar adivinhar qual animal você está pensando, ok?");
+                questionNode(tree.getRoot());
+                break;
+            case 2:
+                out.println("------");
+                out.println("Vamos jogar! Vou tentar adivinhar qual animal você está pensando, ok?");
+                tree = new Tree();
+                tree.setRoot(new Node("baleia"));
+                questionNode(tree.getRoot());
+                break;
+            default:
+                out.println();
+                out.println("Opção inválida!");
+                break;
+        }
     }
 
     public static void questionNode(Node node) {
@@ -53,11 +92,22 @@ public final class Controller {
         } else {
             System.out.println("O animal que você está pensando é: " + node.getText() + "?");
             String input = keyboard.nextLine();
-            
+
             switch (input.toLowerCase()) {
                 case "sim":
+                    out.println();
                     out.println("AHÁ! Estou bom nisso!");
-                    play();
+                    int option = 0;
+                    do {
+                        out.println();
+                        out.println("----------Jogar novamente?---------");
+                        out.println("1.---------------Sim---------------");
+                        out.println("2.---------Sim, novo jogo----------");
+                        out.println("0.---------------Não---------------");
+                        option = Integer.parseInt(keyboard.nextLine());
+                        handleOption(option);
+                    } while (option != 0);
+
                     break;
                 case "nao":
                     out.println("Awwn =(");
@@ -95,7 +145,6 @@ public final class Controller {
     public static void recursiveTraversal(Node root) {
         if (root != null) {
             mapper.add(root);
-            out.println(root.getText());
             recursiveTraversal(root.getYes());
             recursiveTraversal(root.getNo());
         }
