@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import static java.lang.System.out;
+import javax.swing.JOptionPane;
 
 /**
  * 
@@ -41,9 +41,9 @@ public class Mapper {
             oout.flush();
             fout.flush();
         } catch (FileNotFoundException ex) {
-            out.println("Arquivo não encontrado. Criando...");
+            JOptionPane.showMessageDialog(null,"Arquivo não encontrado. Criando...", null, JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
-            out.print(ex);
+            JOptionPane.showMessageDialog(null, ex, null, JOptionPane.INFORMATION_MESSAGE);
         }
     }
     
@@ -57,10 +57,10 @@ public class Mapper {
             oi.close();
             fin.close();
         } catch (FileNotFoundException ex) {
-            out.println("Arquivo não encontrado. Criando...");
+            JOptionPane.showMessageDialog(null,"Arquivo não encontrado. Criando...", null, JOptionPane.INFORMATION_MESSAGE);
             persist();
         } catch (IOException | ClassNotFoundException ex) {
-            out.print(ex);
+            JOptionPane.showMessageDialog(null, ex, null, JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

@@ -3,14 +3,28 @@ package decisiontree.control;
 import decisionTree.map.Mapper;
 import decisiontree.model.Node;
 import decisiontree.model.Tree;
-import static java.lang.System.out;
+import decisiontree.view.Screen;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public final class Controller {
 
     private static Tree tree;
     private static Scanner keyboard;
     private static Mapper mapper;
+    private static Controller instance = null;
+    private static Screen screen;
+
+    public Controller() {
+        screen = new Screen(this);
+    }
+
+    public static Controller getInstance() {
+        if (instance == null) {
+            instance = new Controller();
+        }
+        return instance;
+    }
 
     public static void initialize() {
         tree = new Tree();
@@ -22,107 +36,77 @@ public final class Controller {
         if (!mapper.getCache().isEmpty()) {
             tree.setRoot(mapper.getCache().get(0));
         }
-    }
 
-    public static void play() {
-        int option = 0;
-        try {
-            do {
-                out.println("-----------------------------------");
-                out.println("---------Árvore de Decisão---------");
-                out.println("1.-------Carregar último jogo------");
-                out.println("2.--------Começar novo jogo--------");
-                out.println("0.------------Finalizar------------");
-                out.println("-----------------------------------");
-
-                option = Integer.parseInt(keyboard.nextLine());
-                handleOption(option);
-            } while (option != 0);
-        } catch (Exception e) {
-            out.println("Opção inválida!");
-            play();
-        }
+        screen.setVisible(true);
     }
 
     public static void handleOption(int option) {
         switch (option) {
-            case 0:
-                out.println();
-                out.println("Obrigado por jogar!");
-                out.println("Finalizando...");
+            case 0:                
                 System.exit(0);
-            case 1:
-                out.println("------");
-                out.println("Vamos jogar! Vou tentar adivinhar qual animal você está pensando, ok?");
+            case 1:                
                 questionNode(tree.getRoot());
-                break;
             case 2:
-                out.println("------");
-                out.println("Vamos jogar! Vou tentar adivinhar qual animal você está pensando, ok?");
                 tree = new Tree();
                 tree.setRoot(new Node("baleia"));
                 questionNode(tree.getRoot());
-                break;
-            default:
-                out.println();
-                out.println("Opção inválida!");
-                break;
         }
     }
 
     public static void questionNode(Node node) {
-        System.out.println();
-        System.out.println("Me diga 'sim' ou 'nao':");
 
         if (node.getYes() != null) {
-            out.println("O animal que você está pensando possui essa característica: " + node.getText() + "?");
-            String input = keyboard.nextLine();
-            switch (input.toLowerCase()) {
-                case "sim":
+            Object[] options = {"Sim", "Não"};
+            int option = JOptionPane.showOptionDialog(null, "O animal que você está pensando possui essa característica: " + node.getText() + "?", null, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+            switch (option) {
+                case 0:
                     questionNode(node.getYes());
                     break;
-                case "nao":
+                case 1:
                     questionNode(node.getNo());
                     break;
-                default:
-                    out.println("Digite apenas 'sim' ou 'nao'.");
-                    questionNode(node);
-                    break;
             }
+
         } else {
-            System.out.println("O animal que você está pensando é: " + node.getText() + "?");
-            String input = keyboard.nextLine();
+            Object[] options = {"Sim", "Não"};
+            int option = JOptionPane.showOptionDialog(null, "O animal que você está pensando é: " + node.getText() + "?", null, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-            switch (input.toLowerCase()) {
-                case "sim":
-                    out.println();
-                    out.println("AHÁ! Estou bom nisso!");
-                    int option = 0;
-                    do {
-                        out.println();
-                        out.println("----------Jogar novamente?---------");
-                        out.println("1.---------------Sim---------------");
-                        out.println("2.---------Sim, novo jogo----------");
-                        out.println("0.---------------Não---------------");
-                        option = Integer.parseInt(keyboard.nextLine());
-                        handleOption(option);
-                    } while (option != 0);
+            switch (option) {
+                case 0:
+                    JOptionPane.showMessageDialog(null, "AHÁ! Estou bom nisso!");
 
-                    break;
-                case "nao":
-                    out.println("Awwn =(");
-                    out.println("Qual animal estava pensando?");
-                    String animal = keyboard.nextLine();
-                    out.println("Qual um diferencial que é positivo para " + animal + " e negativo para " + node.getText() + "?");
-                    String diferencial = keyboard.nextLine();
-                    out.println("Ok! Vou me recordar disso! =)");
+                    Object[] options2 = {"Não", "Sim", "Sim, novo jogo"};
+                    int option2 = JOptionPane.showOptionDialog(null, "Jogar novamente? ", null, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, options2[0]);
+                    handleOption(option2);
+                case 1:
+                    String animal = null;
+                    try {
+                        while (animal == null || animal.equals("")) {
+                            animal = JOptionPane.showInputDialog(null, "Awwn =(, qual animal estava pensando?", null, JOptionPane.QUESTION_MESSAGE);
+                            if (animal.equals("")) {
+                                JOptionPane.showMessageDialog(null, "Ei, você não respondeu a pergunta `.´", null, JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    } catch (Exception e) {
+                        System.exit(0);
+                    }
+
+                    String diferencial = null;
+                    try {
+                        while (diferencial == null || diferencial.equals("")) {
+                            diferencial = JOptionPane.showInputDialog(null, "Qual um diferencial que é positivo para " + animal + " e negativo para " + node.getText() + "?", null, JOptionPane.QUESTION_MESSAGE);
+                            if (diferencial.equals("")) {
+                                JOptionPane.showMessageDialog(null, "Ei, você não respondeu a pergunta `.´", null, JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    } catch (Exception e) {
+                        System.exit(0);
+                    }
+
+                    JOptionPane.showMessageDialog(null, "Ok! Vou me recordar disso! =)", null, JOptionPane.INFORMATION_MESSAGE);
                     UpdateTree(node, animal, diferencial);
-                    play();
-                    break;
-                default:
-                    out.println("Digite apenas 'sim' ou 'nao'.");
-                    questionNode(node);
-                    break;
+                    screen.setVisible(true);
             }
         }
     }
