@@ -1,6 +1,8 @@
-package decisionTree.map;
+package decisiontree.map;
 
+import decisiontree.control.Controller;
 import decisiontree.model.Node;
+import decisiontree.view.Screen;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,7 +10,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  * 
@@ -18,9 +19,11 @@ public class Mapper {
     
     private ArrayList<Node> cache; 
     private final String filename = "tree";
+    private static Screen screen;
     
     public Mapper() {
         cache = new ArrayList<>();
+        screen = new Screen(Controller.getInstance());
     }
     
     public void add(Node node) {
@@ -41,9 +44,9 @@ public class Mapper {
             oout.flush();
             fout.flush();
         } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null,"Arquivo não encontrado. Criando...", null, JOptionPane.INFORMATION_MESSAGE);
+            screen.voidMessage(2);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, ex, null, JOptionPane.INFORMATION_MESSAGE);
+            screen.exceptionMessage(ex);
         }
     }
     
@@ -57,10 +60,10 @@ public class Mapper {
             oi.close();
             fin.close();
         } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null,"Arquivo não encontrado. Criando...", null, JOptionPane.INFORMATION_MESSAGE);
+            screen.voidMessage(2);
             persist();
         } catch (IOException | ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, ex, null, JOptionPane.INFORMATION_MESSAGE);
+            screen.exceptionMessage(ex);
         }
     }
 
