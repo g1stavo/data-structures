@@ -4,4 +4,4 @@
 
 <img src="https://www.serebii.net/diamondpearl/pokemon/322-f.png">
 
-I did a Data Structure class at my university and these are the exercises required. I basically learned about stacks, queues, trees, hashing, graphs, search and ordenation algorithms and their complexity analysis.
+I did a Data Structures class at my university and these are the exercises required. I basically learned about stacks, queues, trees, hashing, graphs, search and ordenation algorithms and their complexity analysis.
