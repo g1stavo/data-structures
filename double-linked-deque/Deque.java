@@ -3,8 +3,7 @@ class Deque {
     private Element element;
     private Element end;
 
-    Deque() {
-    }    
+    Deque() { }    
     
     boolean isEmpty () {
         return (n == 0);

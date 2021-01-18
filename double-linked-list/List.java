@@ -1,19 +1,7 @@
-/*
- *
- * No license at all. I'm just a guy who's studying Java.
- *
- */
- 
-
-/**
- *
- * @author gustavo
- */
 class List {    
     private Element head;
     
-    public List() {
-    }
+    public List() { }
     
     boolean isEmpty() {
         return (head == null);

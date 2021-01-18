@@ -1,20 +1,7 @@
-/*
- *
- * No license at all. I'm just a guy who's studying Java.
- *
- */
- 
-
-/**
- *
- * @author gustavo
- */
 class DoubleLinkedList {
-
     private Element head, cursor;
 
-    DoubleLinkedList() {
-    }
+    DoubleLinkedList() { }
 
     boolean isEmpty() {
         return (head == null);
@@ -179,5 +166,4 @@ class DoubleLinkedList {
         cursor = search(element);
         putBeforeCursor(value);
     }
-
 }

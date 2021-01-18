@@ -3,7 +3,6 @@ package decisiontree.model;
 import java.io.Serializable;
 
 public class Node implements Serializable {
-
     private static final long serialVersionUID = 1L;
     private String text;
     private Node yes;
@@ -36,5 +35,4 @@ public class Node implements Serializable {
     public void setNo(Node no) {
         this.no = no;
     }
-
 }

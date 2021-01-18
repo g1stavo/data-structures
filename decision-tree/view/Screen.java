@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Screen extends JFrame {
-
     private final Controller owner;
 
     public Screen(Controller owner) {
@@ -45,22 +44,24 @@ public class Screen extends JFrame {
     }
 
     private class ButtonManager implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent ae) {
             if (ae.getActionCommand().equals("Carregar último jogo")) {
                 setVisible(false);
-                JOptionPane.showMessageDialog(null, "Vamos jogar! Vou tentar adivinhar qual animal você está pensando, ok?", null, JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, 
+                    "Vamos jogar! Vou tentar adivinhar qual animal você está pensando, ok?", null, JOptionPane.PLAIN_MESSAGE);
                 owner.handleOption(1);
             }
             if (ae.getActionCommand().equals("Começar novo jogo")) {
                 setVisible(false);
-                JOptionPane.showMessageDialog(null, "Vamos jogar! Vou tentar adivinhar qual animal você está pensando, ok?", null, JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, 
+                    "Vamos jogar! Vou tentar adivinhar qual animal você está pensando, ok?", null, JOptionPane.PLAIN_MESSAGE);
                 owner.handleOption(2);
             }
             if (ae.getActionCommand().equals("Finalizar")) {
                 setVisible(false);
-                JOptionPane.showMessageDialog(null, "Obrigado por jogar! =)", null, JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, 
+                    "Obrigado por jogar! =)", null, JOptionPane.PLAIN_MESSAGE);
                 owner.handleOption(0);
             }
         }
@@ -92,11 +93,16 @@ public class Screen extends JFrame {
         Object[] options2 = {"Não", "Sim", "Sim, novo jogo"};
         switch (option) {
             case 0:
-                return JOptionPane.showOptionDialog(null, "O animal que você está pensando possui essa característica: " + text + "?", null, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                return JOptionPane.showOptionDialog(
+                    null, "O animal que você está pensando possui essa característica: " + text + "?", null, 
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             case 1:
-                return JOptionPane.showOptionDialog(null, "O animal que você está pensando é: " + text + "?", null, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                return JOptionPane.showOptionDialog(
+                    null, "O animal que você está pensando é: " + text + "?", null, 
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             case 2:
-                return JOptionPane.showOptionDialog(null, "Jogar novamente? ", null, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, options2[0]);                    
+                return JOptionPane.showOptionDialog(null, "Jogar novamente? ", null, 
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, options2[0]);                    
         }
         return 0;
     }
@@ -104,12 +110,12 @@ public class Screen extends JFrame {
     public String stringMessage(int option, String animal, String text) {
         switch(option) {
             case 0:
-                return JOptionPane.showInputDialog(null, "Awwn =(, qual animal estava pensando?", null, JOptionPane.QUESTION_MESSAGE);
+                return JOptionPane.showInputDialog(null, "Awwn =(, qual animal estava pensando?", 
+                    null, JOptionPane.QUESTION_MESSAGE);
             case 1:
-                return JOptionPane.showInputDialog(null, "Qual um diferencial que é positivo para " + animal + " e negativo para " + text + "?", null, JOptionPane.QUESTION_MESSAGE);
-                           
+                return JOptionPane.showInputDialog(null, "Qual um diferencial que é positivo para " + 
+                    animal + " e negativo para " + text + "?", null, JOptionPane.QUESTION_MESSAGE);
         }
         return "";
     }
-
 }

@@ -6,7 +6,6 @@ import decisiontree.model.Tree;
 import decisiontree.view.Screen;
 
 public final class Controller {
-
     private static Tree tree;
     private static Mapper mapper;
     private static Controller instance = null;

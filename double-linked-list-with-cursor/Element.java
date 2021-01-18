@@ -1,16 +1,4 @@
-/*
- *
- * No license at all. I'm just a guy who's studying Java.
- *
- */
- 
-
-/**
- *
- * @author gustavo
- */
 class Element {
-
     private int value;
     private Element previous;
     private Element next;

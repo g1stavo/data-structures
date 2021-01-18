@@ -37,5 +37,4 @@ class Element {
     Element(int value) {
         this.value = value;
     }    
-    
 }

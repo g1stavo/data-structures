@@ -1,27 +1,27 @@
 class SMI {    
-    int[] matriz;
-    int colunas;
-    int linhas;
+    int[] matrix;
+    int columns;
+    int lines;
     
-    SMI(int colunas, int linhas) {
-        this.colunas = colunas;
-        this.linhas = linhas;
-        matriz = new int[colunas * linhas];
+    SMI(int columns, int lines) {
+        this.columns = columns;
+        this.lines = lines;
+        matrix = new int[columns * lines];
     }
     
-    void atribui(int coluna, int linha, int valor) {
-        if ((linha < 0) || (coluna <0) || (linha > linhas) || (coluna > colunas)) {
-            System.out.println("Exceção");
+    void set(int column, int line, int valor) {
+        if ((line < 0) || (column < 0) || (line > lines) || (column > columns)) {
+            System.out.println("Exception");
         }
-        int posicao = (colunas * (linha - 1) + linha) - 1;
-        matriz[posicao] = valor;
+        int position = (columns * (line - 1) + line) - 1;
+        matrix[position] = valor;
     }    
     
-    int acessa(int coluna, int linha) {
-        if ((linha < 0) || (coluna <0) || (linha > linhas) || (coluna > colunas)) {
-            System.out.println("Exceção");
+    int get(int column, int line) {
+        if ((line < 0) || (column < 0) || (line > lines) || (column > columns)) {
+            System.out.println("Exception");
         }
-        int posicao = (colunas * (linha - 1) + linha) - 1;
-        return matriz[posicao];
+        int position = (columns * (line - 1) + line) - 1;
+        return matrix[position];
     }
 }

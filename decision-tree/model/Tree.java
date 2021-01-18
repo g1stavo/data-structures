@@ -1,7 +1,6 @@
 package decisiontree.model;
 
 public class Tree {
-
     private Node root;
 
     public Node getRoot() {
@@ -11,5 +10,4 @@ public class Tree {
     public void setRoot(Node root) {
         this.root = root;
     }
-
 }

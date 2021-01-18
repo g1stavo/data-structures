@@ -11,12 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-/**
- * 
- * @author Gustavo de Castro Salvador <gustavocsalvador at gmail.com>
- */
 public class Mapper {
-    
     private ArrayList<Node> cache; 
     private final String filename = "tree";
     private static Screen screen;
@@ -74,5 +69,4 @@ public class Mapper {
     public void setCache(ArrayList<Node> cache) {
         this.cache = cache;
     }    
-    
 }

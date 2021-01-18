@@ -1,7 +1,6 @@
 package linkedTree;
 
 class Node {
-
     Node left;
     Node right;
     int value;
@@ -29,5 +28,4 @@ class Node {
     int getValue() {
         return value;
     }
-
 }

@@ -1,11 +1,9 @@
 package hash;
 
 class List {
-
     private Element head, cursor;
 
-    List() {
-    }
+    List() { }
 
     boolean isEmpty() {
         return (head == null);
@@ -65,5 +63,4 @@ class List {
             return aux;
         }
     }
-
 }

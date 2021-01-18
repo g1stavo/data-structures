@@ -1,7 +1,6 @@
 package hash;
 
 class Hash {
-
     List[] index;
 
     Hash(int size, int loadFactor) {
@@ -22,5 +21,4 @@ class Hash {
         int group = value % index.length;
         return index[group].remove(value);
     }
-
 }

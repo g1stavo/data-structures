@@ -1,12 +1,10 @@
 package linkedTree;
 
 class Tree {
-
     Node root;
     int n;
     
-    Tree() {
-    }
+    Tree() { }
 
     Node getRoot() {
         return root;
